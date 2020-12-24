@@ -181,70 +181,37 @@ class _MyHomePageState extends State<MyHomePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              child: FlatButton(
-                                child: Text('Simpan',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                                textColor: Colors.blue,
-                                onPressed: () {
-                                  //print ( _postRequest(id, nama, telepon) );
+                            FlatButton(
+                              child: Text('Simpan',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                              textColor: Colors.blue,
+                              onPressed: () {
 
-                                  //cara menggunakna Future
-                                  _postRequest(id, nama, telepon).then((value) {
-                                    print(value);
-                                    if (value == true){
-                                      Navigator.of(context).pop();
-                                    }else{
-                                      print('Kode pelanggan sudah ada');
+                                //cara menggunakan Future
+                                _postRequest(id, nama, telepon).then((value) {
+                                  print(value);
+                                  if (value == true){
+                                    Navigator.of(context).pop();
+                                  }else{
+                                    print('Kode pelanggan sudah ada');
 
-                                      Fluttertoast.showToast(
-                                          msg: "This is Center Short Toast",
-                                          toastLength: Toast.LENGTH_SHORT,
-                                          gravity: ToastGravity.CENTER,
-                                          timeInSecForIosWeb: 1,
-                                          backgroundColor: Colors.red,
-                                          textColor: Colors.white,
-                                          fontSize: 16.0
-                                      );
-
-                                      // Fluttertoast.showToast(
-                                      //   msg: "Kode pelanggan sudah ada",
-                                      //   toastLength: Toast.LENGTH_SHORT,
-                                      //   gravity: ToastGravity.BOTTOM,
-                                      //   timeInSecForIosWeb: 1,
-                                      //   backgroundColor: Colors.red,
-                                      //   textColor: Colors.white,
-                                      //   fontSize: 16.0);
-                                    }
-                                  }, onError: (error) {
-                                    print(error);
-                                  });
-
-                                  //print('OK:' + ok.toString());
-
-                                  // if (ok.toString()) {
-                                  //   Navigator.of(context).pop();
-                                  // } else {
-                                  //   Fluttertoast.showToast(
-                                  //       msg: "This is Center Short Toast",
-                                  //       toastLength: Toast.LENGTH_SHORT,
-                                  //       gravity: ToastGravity.BOTTOM,
-                                  //       timeInSecForIosWeb: 1,
-                                  //       backgroundColor: Colors.red,
-                                  //       textColor: Colors.white,
-                                  //       fontSize: 16.0);
-                                  // }
-                                },
-                              ),
+                                    Fluttertoast.showToast(
+                                        msg:'Aw. data bermasalah',
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.TOP,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Colors.white,
+                                        textColor: Colors.black,
+                                        fontSize: 15.0
+                                    );
+                                  }
+                                }, onError: (error) {
+                                  print(error);
+                                });
+                              },
                             ),
-                            Visibility(
-                                visible: progress,
-                                child: SizedBox(
-                                    width: 20,
-                                    height: 20,
-                                    child: CircularProgressIndicator())),
                             FlatButton(
                               child: Text('Batal'),
                               onPressed: () {
@@ -287,12 +254,6 @@ class _MyHomePageState extends State<MyHomePage> {
       print(e);
       return Future.value(false);
     }
-  }
-
-  _progressBar(bool val) {
-    setState(() {
-      progress = !progress;
-    });
   }
 
   void handleClick(String value) {
